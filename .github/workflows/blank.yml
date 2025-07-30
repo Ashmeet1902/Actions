@@ -23,4 +23,4 @@ jobs:
           first_name: Ashmeet   # Step-level variable
         run: |
           echo "$first_name is using $cloud"
-          echo "Using config variable: ${{ vars.cloud }}"
+          echo "Using config variable: ${{ vars.project }}"
