@@ -1,0 +1,24 @@
+name: variable
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  cloud: google-cloud   # Workflow-level variable
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      greetings: hello   # Job-level variable
+
+    steps:
+      - name: say hello
+        run: echo "$first_name is using $cloud"
+        env:
+          first_name: Ashmeet   # Step-level variable
