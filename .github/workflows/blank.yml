@@ -1,26 +1,21 @@
-name: variable
+name: Manual Deploy
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
   workflow_dispatch:
-
-env:
-  cloud: google-cloud   # Workflow-level variable
+    inputs:
+      environment:
+        description: 'Which environment to deploy to?'
+        required: true
+        default: 'dev'
+      version:
+        description: 'App Version (optional)'
+        required: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-
-    env:
-      greetings: hello   # Job-level variable
-
     steps:
-      - name: say hello
-        env:
-          first_name: Ashmeet   # Step-level variable
+      - name: Show user inputs
         run: |
-          echo "$first_name is using $cloud"
-          echo "Using config variable: ${{ vars.project }}"
+          echo "Deploying to: ${{ github.event.inputs.environment }}"
+          echo "App version: ${{ github.event.inputs.version }}"
