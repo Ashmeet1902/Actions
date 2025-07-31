@@ -1,0 +1,21 @@
+name: Manual Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Which environment to deploy to?'
+        required: true
+        default: 'dev'
+      version:
+        description: 'App Version (optional)'
+        required: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show user inputs
+        run: |
+          echo "Deploying to: ${{ github.event.inputs.environment }}"
+          echo "App version: ${{ github.event.inputs.version }}"
